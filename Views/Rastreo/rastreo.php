@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="row justify-content-center mt-4" id="resPaquete" hidden>
-          <div class="label small-label"> <!-- Clase para el tamaño pequeño de la etiqueta -->
+          <div class="label small-label">
             <div class="header">
               <img src="<?= base_url(); ?>/Assets/images/logo.png" alt="Logo" class="logo">
             </div>
@@ -89,34 +89,32 @@ function SoloLetrasYNumeros(e) {
     }
 }
 
- function mayus(e) {
+function mayus(e) {
     e.value = e.value.toUpperCase();
-  }
+}
 
-  function validarTracking(input) {
+function validarTracking(input) {
     var nombre = input.value;
     nombre = nombre.slice(0, 30);
     input.value = nombre;
-  }
-  </script>
+}
+</script>
 <style>
   body {
     font-family: sans-serif;
   }
 
   .label {
-    width: 3.5in;
-    height: 5.5in;
-    border: 1px solid black;
+    width: 4in; /* Ancho de 4 pulgadas */
+    height: 6in; /* Alto de 6 pulgadas */
+    border: 1px solid black; /* Línea en todo el borde */
     padding: 10px;
     margin-bottom: 20px;
     background-color: white;
   }
 
   .small-label {
-    width: 3in; /* Tamaño reducido para impresión */
-    height: 5in; /* Tamaño reducido para impresión */
-    font-size: 10px; /* Tamaño de fuente reducido para impresión */
+    font-size: 12px; /* Tamaño de fuente adecuado */
   }
 
   .header {
@@ -126,24 +124,24 @@ function SoloLetrasYNumeros(e) {
     font-size: 18px;
     font-weight: bold;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
   }
 
   .logo {
-    width: 200px;
+    width: 150px; /* Ajustar tamaño de logo */
     height: 50px;
     margin-right: 5px;
   }
 
   .section-title {
-    font-size: 10px;
+    font-size: 12px; /* Ajustar tamaño de fuente */
     font-weight: bold;
     margin-top: 5px;
     text-align: left; /* Alineación a la izquierda */
   }
 
   .details {
-    font-size: 10px;
+    font-size: 12px; /* Ajustar tamaño de fuente */
     margin-top: 5px;
     display: flex;
     flex-direction: column;
@@ -154,17 +152,17 @@ function SoloLetrasYNumeros(e) {
     display: inline-block;
     width: 100%;
     text-align: center;
-    font-size: 24px;
+    font-size: 18px; /* Ajustar tamaño de fuente */
     border-bottom: 1px solid black; /* Línea inferior para todos los valores */
-    padding-bottom: 0px; /* Espacio entre valor y línea inferior */
-    margin-bottom: -1px; /* Reducción del espacio entre título y valor */
+    padding-bottom: 5px; /* Espacio entre valor y línea inferior */
+    margin-bottom: 5px; /* Reducción del espacio entre título y valor */
   }
 
   /* Estilo específico para N° Recepción */
   #n_recepcion {
     border-top: 1px solid black; /* Añadir línea superior solo a N° Recepción */
     padding-top: 5px; /* Ajustar espacio superior para alinear con el borde */
-    margin-top: -5px; /* Corregir el margen superior para alinear correctamente */
+    margin-top: 5px; /* Corregir el margen superior para alinear correctamente */
   }
 
   .double-column {
@@ -174,8 +172,8 @@ function SoloLetrasYNumeros(e) {
   }
 
   .double-column .column {
-    flex: 5;
-    width: calc(50% - 0px);
+    flex: 1;
+    width: 50%;
     border: 1px solid black;
     padding: 5px;
     text-align: center;
@@ -196,10 +194,11 @@ function SoloLetrasYNumeros(e) {
       position: absolute;
       left: 0;
       top: 0;
-      width: 35%;
+      width: 4in;
+      height: 6in;
       background-color: white;
       padding: 10px;
-      border: none;
+      border: 1px solid black; /* Línea en todo el borde */
       margin: 0;
     }
   }

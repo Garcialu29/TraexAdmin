@@ -192,6 +192,8 @@ function fntDelPaquete(Cod_Envio_Paquetes) {
 //}, false);
 
 
+
+
 function rastreoPaquete() {
     $("#resPaquete").removeAttr("hidden");
     const searchTxt = $("#ref_no").val();
@@ -203,8 +205,11 @@ function rastreoPaquete() {
             if (response.error) {
                 alert(response.error); // Muestra el mensaje de error en una alerta
             } else {
+                const nombreCompleto = response.nombreCliente + " " + response.apellidoCliente;
+
                 // Mostrar los datos del paquete
                 $("#id_Casillero").text(response.NumeroCasillero);
+                $("#nombreCompleto").text(nombreCompleto);
                 $("#Cod_Tipo_Envio").text(response.nombreTipoEnvio);
                 $("#Peso_paquete").text(response.Peso_paquete);
                 $("#Volumen_paquete").text(response.Volumen_paquete);
