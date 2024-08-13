@@ -53,9 +53,9 @@ if($result){
     if($error==1){
         echo 'Error';
     }else{
-        chmod("C:\Users\garci\Documents\proyect github\TraexAdmin/BRM-master/backups/", 0777);
+        chmod("C:/Users/garci/Documents/proyect%github/TraexAdmin/BRM-master/backups/", 0777);
         $sql.='SET FOREIGN_KEY_CHECKS=1;';
-        $handle=fopen("C:\Users\garci\Documents\proyect github\TraexAdmin/BRM-master\backups".$DataBASE,'w+');
+        $handle=fopen("C:/Users/garci/Documents/proyect%github/TraexAdmin/BRM-master/backups/".$DataBASE,'w+');
         if(fwrite($handle, $sql)){
             fclose($handle);
             { 
