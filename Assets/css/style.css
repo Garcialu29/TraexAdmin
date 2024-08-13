@@ -1,0 +1,48 @@
+.app-sidebar__user-avatar {
+    width: 0px;
+    background: gray;
+    padding: 15px;
+}
+.app-sidebar__toggle{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 15pt;
+}
+.app-sidebar__toggle::before{
+	display: none;
+}
+.headerRegister{
+	background: #0E025D;
+	color: #FFF 
+}
+.headerUpdate{
+	background: #0E025D;
+	color: #FFF;
+}
+.notBlock{
+	display: none;
+}
+
+
+    .small-chart {
+        margin-bottom: 20px; /* Ajusta según sea necesario */
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+	.login-image {
+		width: 5cm;
+		height: 3cm;
+		margin-bottom: 20px; /* Ajusta según sea necesario */
+	}
+
+	
+  
+
+	
