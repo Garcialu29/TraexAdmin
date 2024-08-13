@@ -44,7 +44,7 @@
         <li>
         <a class="treeview-item" href="<?= base_url(); ?>/backupr"> <i class="icon fa fa-database"></i>Backup</a></li>
         <a class="treeview-item" href="<?= base_url(); ?>/restorer"> <i class="icon fa fa-window-restore" ></i> Restore</a></li>  
-        <a class="app-menu__item" href="<?= base_url(); ?>/Notificaciones"><i class="icon fa fa-bell"></i><span class="app-menu__label">Notificaciones</span></a></li>
+        <!--<a class="app-menu__item" href="<?= base_url(); ?>/Notificaciones"><i class="icon fa fa-bell"></i><span class="app-menu__label">Notificaciones</span></a></li>-->
           
         </li>
         <li>
