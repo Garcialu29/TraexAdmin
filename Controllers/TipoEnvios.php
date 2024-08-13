@@ -31,7 +31,7 @@ class TipoEnvios extends Controllers
         $data['page_tag'] = "Tipo de Envío";
         $data['page_title'] = "Tipos de Envío";
         $data['page_name'] = "Tipo_Envios";
-        $data['page_functions_js'] = "functions_tipoEnvios.js";
+        $data['page_functions_js'] = "functions_TipoEnvios.js";
         $this->views->getView($this, "tipoEnvios", $data);
     }
 
