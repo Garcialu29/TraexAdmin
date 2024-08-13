@@ -1,6 +1,6 @@
 <?php 
 	
-	define("BASE_URL", "http://traexhn.com/TraexAdmin");
+	define("BASE_URL", "http://traexhn.com");
 	//const BASE_URL = "http://transportexpresshn.mysql.database.azure.com";
 
 	//Zona horaria
