@@ -41,6 +41,11 @@
     <?php
     }?> 
 
+    <?php if($data['page_name'] == "Tipos de envio"){  ?>
+    <script src="<?= base_url(); ?>/Assets/js/functions_TipoEnvios.js"></script> 
+    <?php
+    }?>
+
 
     <script type="text/javascript" src="<?= media(); ?>/js/functions_admin.js"></script>
     <script src="<?= media(); ?>/js/<?= $data['page_functions_js']; ?>"></script>

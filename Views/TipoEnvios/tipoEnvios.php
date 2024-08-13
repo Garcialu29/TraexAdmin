@@ -44,4 +44,5 @@
             </div>
         </div>
     </main>
+    <script src="path/to/functions_tipoEnvios.js"></script>
 <?php footerAdmin($data); ?>

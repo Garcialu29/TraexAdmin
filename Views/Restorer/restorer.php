@@ -31,14 +31,14 @@ include("BRM-master\php\Connet.php");
 										<option value="" disabled="" selected="">Selecciona un punto de restauración
 										<option>
 											<?php
-											$ruta = "C:/xampp/htdocs/admintraex/BRM-master/backups/";
+											$ruta = "C:/Users/garci/Documents/proyect github/TraexAdmin/BRM-master/backups/";
 											if (is_dir($ruta)) {
 												if ($aux = opendir($ruta)) {
 													while (($archivo = readdir($aux)) !== false) {
 														if ($archivo != "." && $archivo != "..") {
 															$nombrearchivo = str_replace(".sql", "", $archivo);
 															$nombrearchivo = str_replace("-", ":", $nombrearchivo);
-															$ruta_completa = "C:/xampp/htdocs/admintraex/BRM-master/backups/" . $archivo;
+															$ruta_completa = "C:/Users/garci/Documents/proyect github/TraexAdmin/BRM-master/backups/" . $archivo;
 															if (is_dir($ruta_completa)) {
 															} else {
 																echo '<option value="' . $ruta_completa . '">' . $nombrearchivo . '</option>';
