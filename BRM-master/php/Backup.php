@@ -53,14 +53,14 @@ if($result){
     if($error==1){
         echo 'Error';
     }else{
-        chmod("C:/xampp/htdocs/TraexAdmin/BRM-master/backups/", 0777);
+        chmod("C:\Users\garci\Documents\proyect%github\TraexAdmin\BRM-master", 0777);
         $sql.='SET FOREIGN_KEY_CHECKS=1;';
-        $handle=fopen("C:/xampp/htdocs/TraexAdmin/BRM-master/backups/".$DataBASE,'w+');
+        $handle=fopen("C:\Users\garci\Documents\proyect%github\TraexAdmin\BRM-master".$DataBASE,'w+');
         if(fwrite($handle, $sql)){
             fclose($handle);
             { 
              
-		echo "<script> alert('COPIA DE SEGURIDAD CREADA EXITOSAMENTE');window.location= 'http://localhost/TraexAdmin/backupr' </script>";
+		echo "<script> alert('COPIA DE SEGURIDAD CREADA EXITOSAMENTE');window.location= 'http://traexhn/backupr' </script>";
         
 			
          

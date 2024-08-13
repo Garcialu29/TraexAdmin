@@ -1,16 +1,16 @@
 <?php
 
 //Nombre de usuario de mysql
- const USER = "root";
+ const USER = "u298225197_TraexServerMyS";
 
 //Servidor de mysql
  const SERVER = "localhost"; 
 
 //Nombre de la base de datos
-const BD = "traex_db";
+const BD = "u298225197_traex_db";
 
 //Contraseña de myqsl
-const PASS = "";
+const PASS = "Tr43x@2024.";
 
 //Carpeta donde se almacenaran las copias de seguridad
 const BACKUP_PATH =  "BRM-master/backup/";

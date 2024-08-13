@@ -39,9 +39,9 @@
                     <input  id="op_correo" name="opcion" type="radio"  > Correo electronico
                      
                 </label><br>
-                <label>
+                <!--<label>
                     <input  id="op_preguntas" type="radio" name="opcion" > Preguntas secretas
-                </label>
+                </label>-->
               
             </fieldset>
      

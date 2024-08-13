@@ -8,7 +8,7 @@
                         <h3 class="card-title text-center">Copia de Seguridad</h3>
                         <p class="card-text text-center">Respalde su base de datos</p>
                         <div class="text-center">
-                            <a href="http://localhost/TraexAdmin/BRM-master/php/Backup.php" class="btn btn-success">Generar Backup</a>
+                            <a href="http:///BRM-master/php/Backup.php" class="btn btn-success">Generar Backup</a>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,8 @@
                             <tbody>
                                 <?php
                                 // Directorio donde se almacenan los archivos de respaldo
-                                $backup_dir = "C:/xampp/htdocs/TraexAdmin/BRM-master/backups/";
+                                //$backup_dir = "C:/xampp/htdocs/TraexAdmin/BRM-master/backups/";
+                                $backup_dir = "C:\Users\garci\Documents\proyect%github\TraexAdmin\BRM-master";
 
                                 // Obtener la lista de archivos de respaldo en el directorio
                                 $backups = scandir($backup_dir);
