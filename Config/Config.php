@@ -1,16 +1,16 @@
 <?php 
 	
-	define("BASE_URL", "http:/T/TraexAdmin");
+	define("BASE_URL", "http://traexhn.com/TraexAdmin");
 	//const BASE_URL = "http://transportexpresshn.mysql.database.azure.com";
 
 	//Zona horaria
 	date_default_timezone_set('America/Tegucigalpa');
 
 	//Datos de conexión a Base de Datos
-	const DB_HOST = "localhost";
-	const DB_NAME = "traex_db";
-	const DB_USER = "root";
-	const DB_PASSWORD = "";
+	const DB_HOST = "http://traexhn.com";
+	const DB_NAME = "u298225197_traex_db";
+	const DB_USER = "u298225197_TraexServerMyS";
+	const DB_PASSWORD = "Tr43x@2024.";
 	const DB_CHARSET = "charset=utf8";
 	
 	
