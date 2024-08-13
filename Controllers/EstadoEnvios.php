@@ -12,7 +12,7 @@ class EstadoEnvios extends Controllers
 			header('Location: ' . base_url() . '/login');
 			die();
 		}
-		//getPermisos(MESTADO);
+		getPermisos(MESTADO);
 	}
 
 	public function estadoEnvios()

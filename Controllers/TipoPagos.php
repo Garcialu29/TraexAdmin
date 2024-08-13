@@ -12,7 +12,7 @@ class TipoPagos extends Controllers
             header('Location: ' . base_url() . '/login');
             die();
         }
-        //getPermisos(MPAGO);
+        getPermisos(MPAGO);
     }
 
     public function TipoPagos()

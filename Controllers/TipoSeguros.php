@@ -12,7 +12,7 @@ class TipoSeguros extends Controllers
             header('Location: ' . base_url() . '/login');
             die();
         }
-        //getPermisos(MSEGURO);
+        getPermisos(MSEGURO);
     }
 
     public function TipoSeguros()
