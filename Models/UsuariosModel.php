@@ -27,12 +27,13 @@
         public function getUserEmail(string $strEmail){
             $this->strEmail = $strEmail;
             $sql = "SELECT id_usuario ,Nombre,id_estado_usuario FROM tbl_usuarios WHERE 
-            Correo_Electronico = '$this->strUsuario' ";
-
+            Correo_Electronico = '$this->strEmail' ";
+        
             $request = $this->select($sql);
             return $request;
-
         }
+        
+        
         public function selectUsuarioR($contenido)
 		{
 
@@ -191,13 +192,12 @@
                                  $this->strstatus);
                  return true;
             }else{
-                $sql = "UPDATE tbl_usuarios SET Id_Rol=?, Nombre=?, Contrasena=?, 
+                $sql = "UPDATE tbl_usuarios SET Id_Rol=?, Nombre=?, 
                         Telefono=?, Direccion=?, Correo_Electronico=?, id_estado_usuario=?
                         WHERE id_usuario = $this->intIdUsuario";
                 $arrData = array(
                                  $this->strRol,
                                  $this->strNombre,
-                                 $this->strPassword,
                                  $this->intTelefono,
                                  $this->strDireccion,
                             
@@ -211,7 +211,7 @@
             $request = "exist"; // si ya existe el email o la identidad sale
         }
 
-        //return $request;
+        return $request;
 
     }
     
@@ -244,14 +244,14 @@
     
     public function deleteUsuario(int $intIdpersona)
     {
-        $this->intIdUsuario = $intIdpersona;//validacion que nos sirve para historial
-        //$sql = "UPDATE tbl_usuarios SET id_estado_usuario = ? WHERE id_usuario = $this->intIdUsuario ";
-        //$arrData = array(0);
-        //$request = $this->update($arrData);
-        //return $request;
-
-        
+        $this->intIdUsuario = $intIdpersona; //validacion que nos sirve para historial
+        //$sql = "UPDATE tbl_usuarios SET id_estado_usuario = 2 WHERE id_usuario = $this->intIdUsuario ";
+        $sql = "UPDATE tbl_usuarios SET id_estado_usuario = 2 WHERE id_usuario = ?";
+        $arrData = array($this->intIdUsuario);
+        $request = $this->update($sql, $arrData);
+        return $request;
     }
+    
 
 
         //CODIGO PARA ESTADO USUARIO
@@ -288,6 +288,8 @@
             $request = $this->update($sql,$arrData);
             return $request;
         }
+
+
         public function UpdateReinicio(int $id_Usuario, string $correo){
             $this->intIdusuario = $id_Usuario;
             $this->strcorreo = $correo;

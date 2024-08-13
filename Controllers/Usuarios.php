@@ -1,9 +1,9 @@
 <?php
 require 'Libraries/html2pdf/vendor/autoload.php';
-
 use Spipu\Html2Pdf\Html2Pdf;
 
 class Usuarios extends Controllers
+
 {
 	public function __construct()
 	{
@@ -21,19 +21,11 @@ class Usuarios extends Controllers
 	{
 
 		if (empty($_SESSION['permisosMod']['Permiso_Get'] ||  $_SESSION['userData']['id_usuario'] == 1)) {
-			header("Location:" . base_url() . '/dashboard');
+			header("Location:" . base_url() . '/inicio');
 		}
-		// Registro en la bitácora
-		$fecha_actual = date("Y-m-d H:i:s");
-		$eventoBT = "Acceso a la vista Usuarios";
-		$descripcionBT = 'El usuario accedió a la vista de usuarios';
-	
-		$objetoBT = 4; // Valor correspondiente al objeto tipo de seguro
-		$insertBitacora = $this->model->bitacora($_SESSION['userData']['id_usuario'], $objetoBT, $eventoBT, $descripcionBT, $fecha_actual);
-
 		$data['page_id'] = 2;
 		$data['page_tag'] = "usuarios - Traex";
-		$data['page_title'] = "usuarios-  Traex";
+		$data['page_title'] = "usuarios -  Traex";
 		$data['page_name'] = "usuarios";
 		$this->views->getView($this, "usuarios", $data);
 	}
@@ -45,7 +37,7 @@ class Usuarios extends Controllers
 
 			//validacion de todos los datos fueron enviados	
 			if (empty($_POST['listRolid']) || empty($_POST['txtNombre']) || empty($_POST['txtcontrasena']) || empty($_POST['txtcontrasenaC']) || empty($_POST['txtestado']) || empty($_POST['txtTelefono']) || empty($_POST['txtDireccion']) ||  empty($_POST['txtEmail'])) {
-				$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
+				$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.', "alert" => "error");
 			} else { //limpiar los datos 
 				$idUsuario = intval($_POST['idUsuario']);
 				$strrolusuario = intval(strClean($_POST['listRolid']));
@@ -58,7 +50,7 @@ class Usuarios extends Controllers
 				$strstatus = 3;
 				$strContrasena = (strClean($_POST['txtcontrasena']));
 				$strConfirmContrasena = (strClean($_POST['txtcontrasenaC']));
-				//$strstatus = 1;
+				$strstatus = 1;
 
 
 
@@ -75,7 +67,7 @@ class Usuarios extends Controllers
 				//		exit;
 				if ($strContrasena != $strConfirmContrasena) {
 
-					$arrResponse = array("status" => false, "msg" => 'Las contraseñas deben ser iguales');
+					$arrResponse = array("status" => false, "msg" => 'Las contraseñas deben ser iguales', "alert" => "error");
 				} else {
 
 					if ($idUsuario == 0) {
@@ -123,9 +115,6 @@ class Usuarios extends Controllers
 						$strPasswordC = (strClean($_POST['txtcontrasena']));
 						$strEmail = strtolower(strClean($_POST['txtEmail'])); //la funcion strlower convierte todos los valores de txt en minusculas y strClean limpia los campos que intentan hacer una consulta sql
 						//envia como parametro el email al metodo getUserEmail del modelo	
-
-
-						//$id_Usuario = $arrData['id_usuario'];
 						$nombreUsuario = $strNombre;
 
 						$url_recovery = base_url() . '/Login';
@@ -146,20 +135,21 @@ class Usuarios extends Controllers
 
 							$consultaId = $this->model->getUserEmail($strEmail);
 							$insertReinicio = $this->model->insertReinicio($consultaId['id_usuario'], $strEmail); //usado para agregar la final a cada usuario del reinicio de contrasena
-							$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+							$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.', "alert" => "success");
+							
 							/////////////bitacora
-							$fecha_actual = (date("Y-m-d H:i:s"));
+							$fecha_actual = (date("Y-m-d"));
 							$eventoBT = "Agregar usuario";
 							$descripcionBT = 'Se agrego el nuevo usuario ' . $strEmail . ' al sistema';
 
 
-							$objetoBT = 4; //le manda el valor de 1 que significa que esta en el objeto de login, eso varia depende donde se encuentre el usuario
+							$objetoBT = 2; //le manda el valor de 1 que significa que esta en el objeto de login, eso varia depende donde se encuentre el usuario
 							$insertBitacora = $this->model->bitacora($consultaId['id_usuario'], $objetoBT, $eventoBT, $descripcionBT, $fecha_actual); //actualiza la cantidad de intentos del usuario
 							/////////////////////fin bitacora
 						} else if ($request_user == 'exist') {
-							$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identificación ya existe, ingrese otro.');
+							$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identidad ya existe, ingrese otro.', "alert" => "error");
 						} else {
-							$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
+							$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.', "alert" => "error");
 						}
 					}
 				}
@@ -168,7 +158,9 @@ class Usuarios extends Controllers
 			echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 		}
 		die();
+		
 	}
+
 
 
 	//creacion del metodo setUsuario que llamamos en functions_usuarios
@@ -200,7 +192,7 @@ class Usuarios extends Controllers
 			if ($idUsuario == 1 && $strstatus != 1) {
 
 
-				$arrResponse = array('status' => false, 'msg' => 'No se puede cambiar el estado a este usuario.');
+				$arrResponse = array('status' => false, 'msg' => 'No se puede cambiar el estado a este usuario.', "alert" => "error");
 			} else {
 
 				$request_user = $this->model->updateUsuario($idUsuario, $strrolusuario, $strNombre, $strPassword, $intTelefono, $strDireccion, $strEmail, $strstatus);
@@ -209,23 +201,23 @@ class Usuarios extends Controllers
 				if ($request_user == true) {
 
 					$updateReinicio = $this->model->UpdateReinicio($idUsuario, $strEmail); //usado para actualizar tambien la tabla de reinicio de contrasena
-					$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
+					$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.',"alert" => "success");
 					$intento = 0;
 					$updateReinicio = $this->model->updateIntentos($idUsuario, $intento); //usado para actualizar tambien la tabla de reinicio de contrasena
 					/////////////bitacora
-					$fecha_actual = (date("Y-m-d H:i:s"));
+					$fecha_actual = (date("Y-m-d"));
 					$eventoBT = "Actualizar usuario";
 					$descripcionBT = 'Se actualizo el  usuario ' . $strEmail . '';
 
 
-					$objetoBT = 4; //le manda el valor de 1 que significa que esta en el objeto de login, eso varia depende donde se encuentre el usuario
+					$objetoBT = 2; //le manda el valor de 1 que significa que esta en el objeto de login, eso varia depende donde se encuentre el usuario
 					$insertBitacora = $this->model->bitacora($idUsuario, $objetoBT, $eventoBT, $descripcionBT, $fecha_actual); //actualiza la cantidad de intentos del usuario
 					/////////////////////fin bitacora
 
 				} else if ($request_user == false) { //
-					$arrResponse = array('status' => false, 'msg' => '¡Atención! el email ya existe, ingrese otro.');
+					$arrResponse = array('status' => false, 'msg' => '¡Atención! el email ya existe, ingrese otro.',"alert" => "error");
 				} else {
-					$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
+					$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.',"alert" => "error");
 				}
 			}
 
@@ -246,13 +238,7 @@ class Usuarios extends Controllers
 		$html2pdf = new Html2Pdf();
 		$html2pdf->writeHTML($html);
 		$html2pdf->output();
-		// Registrar en la bitácora
-		$fecha_actual = date("Y-m-d H:i:s");
-		$eventoBT = "Generó reporte";
-		$descripcionBT = 'Generó un reporte de usuarios en formato PDF';
 
-		$objetoBT = 4; // Valor correspondiente al objeto parámetros (ajusta según tu sistema)
-		$insertBitacora = $this->model->bitacora($_SESSION['userData']['id_usuario'], $objetoBT, $eventoBT, $descripcionBT, $fecha_actual);
 
 		die();
 	}
@@ -292,7 +278,6 @@ class Usuarios extends Controllers
 
 
 	//Invocar el metodo  
-
 	public function getUsuario()
 	{
 		$arrData = $this->model->selectUsuario();
@@ -318,13 +303,13 @@ class Usuarios extends Controllers
 
 				$arrData[$i]['id_estado_usuario'] = '<span class="badge badge-primary">Default</span>';
 			}
-			if ($_SESSION['permisosMod']['Permiso_Update'] ||  $_SESSION['userData']['id_usuario'] == 1) {
+			if ($_SESSION['permisosMod']['Permiso_Update'] ||  $_SESSION['userData']['id_usuario'] == 1 ) {
 
-				$btnEdit = '<button class="btn btn-primary  btn-sm btnEditUsuario" onClick="fntEditUsuario12(' . $arrData[$i]['id_usuario'] . ')" title="Editar usuario">Editar</button>';
+				$btnEdit = '<button class="btn btn-primary  btn-sm btnEditUsuario" onClick="fntEditUsuario12(' . $arrData[$i]['id_usuario'] . ')" title="Editar usuario"><i class="fas fa-pencil-alt"></i></button>';
 			}
 			if ($_SESSION['permisosMod']['Permiso_Delete'] ||  $_SESSION['userData']['id_usuario'] == 1) {
 
-				$btnDelete = '<button class="btn btn-danger btn-sm btnDelUsuario" onClick="fntDelUsuario(' . $arrData[$i]['id_usuario'] . ')" title="Eliminar usuario">Eliminar</button>';
+				$btnDelete = '<button class="btn btn-danger btn-sm btnDelUsuario" onClick="fntDelUsuario(' . $arrData[$i]['id_usuario'] . ')" title="Eliminar usuario"><i class="far fa-trash-alt"></button>';
 			}
 			$arrData[$i]['opciones'] = '<div class="text-center">' . $btnEdit . ' ' . $btnDelete . '</div>';
 		}
@@ -340,7 +325,7 @@ class Usuarios extends Controllers
 
 			$arrData = $this->model->selectUsuarioM($user);
 			if (empty($arrData)) {
-				$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+				$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.',"alert" => "error");
 			} else {
 				$arrResponse = array('status' => true, 'data' => $arrData);
 			}
@@ -348,6 +333,7 @@ class Usuarios extends Controllers
 		}
 		die();
 	}
+	
 	public function getUsuarioF()
 	{
 		$parametro = ($this->model->getParametroFechaVencimiento()); //obtenemos el valor del parametro de intentos de acceso
@@ -372,23 +358,23 @@ class Usuarios extends Controllers
 			$intIdpersona = intval($_POST['idUsuario']);
 			$requestDelete = $this->model->deleteUsuario($intIdpersona);
 			if ($requestDelete) {
-				$arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el usuario');
+				$arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el usuario',"alert" => "success");
 			} else {
 
 				if ($intIdpersona == 1) { //para que no elimine el super usuario
 					$arrResponse = array('status' => false, 'msg' => 'Error no se puede eliminar este usuario ya que es el administrador');
 				} else {
 
-					$arrResponse = array('status' => false, 'msg' => 'El usuario cambio a estado inactivo.');
+					$arrResponse = array('status' => false, 'msg' => 'El usuario cambio a estado inactivo.',"alert" => "error");
 					$estado = 2;
 					$requestDelete = $this->model->updatestadodel($intIdpersona, $estado);
 					/////////////bitacora
-					$fecha_actual = (date("Y-m-d H:i:s"));
+					$fecha_actual = (date("Y-m-d"));
 					$eventoBT = "Eliminar usuario";
 					$descripcionBT = 'Se elimino el  usuario con id ' . $intIdpersona . '';
 
 
-					$objetoBT = 4; //le manda el valor de 1 que significa que esta en el objeto de login, eso varia depende donde se encuentre el usuario
+					$objetoBT = 2; //le manda el valor de 1 que significa que esta en el objeto de login, eso varia depende donde se encuentre el usuario
 					$insertBitacora = $this->model->bitacora($intIdpersona, $objetoBT, $eventoBT, $descripcionBT, $fecha_actual); //actualiza la cantidad de intentos del usuario
 					/////////////////////fin bitacora
 				}
