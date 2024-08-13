@@ -40,7 +40,7 @@
                      
                 </label><br>
                 
-                    <input  id="op_preguntas"  > 
+                    <label  id="op_preguntas" type="" name="opcion" > 
                 </label>
               
             </fieldset>
