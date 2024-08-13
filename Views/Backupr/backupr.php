@@ -8,7 +8,7 @@
                         <h3 class="card-title text-center">Copia de Seguridad</h3>
                         <p class="card-text text-center">Respalde su base de datos</p>
                         <div class="text-center">
-                            <a href="http:///BRM-master/php/Backup.php" class="btn btn-success">Generar Backup</a>
+                            <a href="http://traexhn.com/BRM-master/php/Backup.php" class="btn btn-success">Generar Backup</a>
                         </div>
                     </div>
                 </div>
