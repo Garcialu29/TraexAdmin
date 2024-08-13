@@ -28,8 +28,8 @@
                             <tbody>
                                 <?php
                                 // Directorio donde se almacenan los archivos de respaldo
-                                //$backup_dir = "C:/xampp/htdocs/TraexAdmin/BRM-master/backups/";
-                                $backup_dir = "C:\Users\garci\Documents\proyect%github\TraexAdmin\BRM-master";
+                                $backup_dir = "C:/xampp/htdocs/TraexAdmin/BRM-master/backups/";  
+                                $backup_dir = "C:\Users\garci\Documents\proyect github\TraexAdmin\BRM-master\backups";
 
                                 // Obtener la lista de archivos de respaldo en el directorio
                                 $backups = scandir($backup_dir);
