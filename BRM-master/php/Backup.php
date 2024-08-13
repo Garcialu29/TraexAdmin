@@ -60,7 +60,7 @@ if($result){
             fclose($handle);
             { 
              
-		echo "<script> alert('COPIA DE SEGURIDAD CREADA EXITOSAMENTE');window.location= 'http://traexhn/backupr' </script>";
+		echo "<script> alert('COPIA DE SEGURIDAD CREADA EXITOSAMENTE');window.location= 'http://traexhn.com/backupr' </script>";
         
 			
          
