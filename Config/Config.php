@@ -7,9 +7,9 @@
 	date_default_timezone_set('America/Tegucigalpa');
 
 	//Datos de conexión a Base de Datos
-	const DB_HOST = "localhost";
-	const DB_NAME = "u298225197_traex_db";
-	const DB_USER = "u298225197_TraexServerMyS";
+	const DB_HOST = "93.127.200.236";
+	const DB_NAME = "traex_db";
+	const DB_USER = "traexproy";
 	const DB_PASSWORD = "Tr43x@2024.";
 	const DB_CHARSET = "charset=utf8";
 	
